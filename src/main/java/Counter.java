@@ -16,13 +16,13 @@ public class Counter {
 		count++;
 	}
 
-	public void increment() {
-    count += 2;
-	}
-	
-	// public void increaseBy(int i) {
-	// 	count+=i;
+	// public void increment() {
+    // count += 2;
 	// }
+	
+	public void increaseBy(int i) {
+		count+=i;
+	}
 	
 	public void decrement() {
 		count--;
