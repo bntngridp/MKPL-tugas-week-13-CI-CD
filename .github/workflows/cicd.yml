@@ -1,0 +1,62 @@
+name: Counter CI/CD
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+
+  build-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Source
+        uses: actions/checkout@v4
+
+      - name: Setup Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+
+      - name: Build Project
+        run: mvn compile
+
+      - name: Run Unit Test
+        run: mvn test
+
+      - name: Package Application
+        run: mvn package
+
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: counter-build
+          path: target/*.jar
+
+  deliver:
+    needs: build-test
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Download Artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: counter-build
+
+      - name: Simulate Delivery
+        run: |
+          mkdir delivery
+          cp *.jar delivery/
+          echo "Artifact Delivered"
+
+  deploy:
+    needs: deliver
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Simulate Deployment
+        run: |
+          echo "Deploying Application..."
+          echo "Deployment Success"
