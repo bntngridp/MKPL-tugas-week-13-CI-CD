@@ -12,8 +12,12 @@ public class Counter {
 		count = 0;
 	}
 	
+	// public void increment() {
+	// 	count++;
+	// }
+
 	public void increment() {
-		count++;
+    count += 2;
 	}
 	
 	public void increaseBy(int i) {
