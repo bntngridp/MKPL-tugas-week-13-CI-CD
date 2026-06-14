@@ -12,13 +12,13 @@ public class Counter {
 		count = 0;
 	}
 	
-	// public void increment() {
-	// 	count++;
-	// }
-
 	public void increment() {
-    count += 2;
+		count++;
 	}
+
+	// public void increment() {
+    // count += 2;
+	// }
 	
 	public void increaseBy(int i) {
 		count+=i;
